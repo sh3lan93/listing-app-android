@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ListingApp</string>
+    <string name="txt_your_sear_query_here">"Your search querr here "</string>
+</resources>

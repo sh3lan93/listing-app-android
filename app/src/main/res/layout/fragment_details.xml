@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.shalan.listingapp.base.network.response.Song" />
+
+        <import type="com.shalan.listingapp.base.network.response.CoverType" />
+
+        <variable
+            name="song"
+            type="Song" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.details.DetailsFragment">
+
+        <ImageView
+            android:id="@+id/iv_song_cover"
+            model="@{song}"
+            type="@{CoverType.LARGE}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_song_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:text="@{song.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_song_cover" />
+
+        <TextView
+            android:id="@+id/tv_song_publish_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{song.publishDate}"
+            app:layout_constraintEnd_toStartOf="@id/tv_song_duration"
+            app:layout_constraintStart_toStartOf="@id/tv_song_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_song_title" />
+
+        <TextView
+            android:id="@+id/tv_song_duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(song.duration)}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_song_publish_date"
+            app:layout_constraintEnd_toEndOf="@id/tv_song_title"
+            app:layout_constraintStart_toEndOf="@id/tv_song_publish_date"
+            app:layout_constraintTop_toTopOf="@id/tv_song_publish_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

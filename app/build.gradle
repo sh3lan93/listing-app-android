@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    buildFeatures {
+        dataBinding = true
+    }
+    compileSdkVersion Versions.compile_sdk
+    buildToolsVersion Versions.build_tools_version
+
+    defaultConfig {
+        applicationId "com.shalan.listingapp"
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode Versions.version_code
+        versionName Versions.version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"http://staging-gateway.mondiamedia.com/\"")
+        buildConfigField("String", "GATEWAYKEY", "\"$GATEWAYKEY\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation Dependencies.kotlin_stdlib
+    implementation Dependencies.core_ktx
+    implementation Dependencies.app_compact
+    implementation Dependencies.googleMaterial
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation Dependencies.junit
+    androidTestImplementation Dependencies.androidx_test_junit
+    androidTestImplementation Dependencies.androidx_espresso
+
+    implementation Dependencies.recyclerview
+    implementation Dependencies.constraint_layout
+
+    implementation Dependencies.viewmodel
+    implementation Dependencies.livedata
+
+    kapt Dependencies.lifecycle_annotations
+
+    implementation Dependencies.navigation_component
+    implementation Dependencies.navigation_component_ui
+
+    debugImplementation Dependencies.chuckerDebug
+    releaseImplementation Dependencies.chuckerRelease
+
+    debugImplementation Dependencies.hyperion
+    debugImplementation Dependencies.hyperionSharedPreferences
+    releaseImplementation Dependencies.hyperionRelease
+    debugImplementation Dependencies.hyperionCrash
+
+    implementation Dependencies.activity_ktx
+    implementation Dependencies.swipeToRefresh
+
+    implementation Dependencies.kotlinx_coroutines
+}
